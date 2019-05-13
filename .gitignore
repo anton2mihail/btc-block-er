@@ -1,5 +1,7 @@
-.env
-npm-debug.log
+.DS_Store
+.next
+.vscode
+out/
 node_modules
-dist
-prod.go
+yarn.lock
+package-lock.json
