@@ -21,6 +21,8 @@
   "homepage": "https://github.com/anton2mihail/btc-block-er#readme",
   "dependencies": {
     "@zeit/next-sass": "^1.0.1",
+    "chart.js": "^2.8.0",
+    "ipinfo": "^1.3.9",
     "next": "^8.1.0",
     "node-fetch": "^2.5.0",
     "node-sass": "^4.12.0",
