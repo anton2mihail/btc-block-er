@@ -1,7 +1,6 @@
 import React from 'react';
-import Link from 'next/link';
 import fetch from 'node-fetch';
-import ipInfo from 'ipinfo';
+import ipInfo from '../utilities/ipinfo/lib/index';
 import countryToCurrency from '../utilities/countryToCurrency';
 
 import Layout from '../components/Layout';
@@ -22,10 +21,14 @@ export default class Index extends React.Component {
       this.fetchBtcPriceData();
     });
   }
+
   fetchBtcPriceData = () => {
     fetch('https://blockchain.info/ticker')
-      .then((res, err) => res.json())
-      .then(data => {
+      .then((res, err) => {
+        if (err) throw err;
+        return res.json();
+      })
+      .then((data) => {
         const currency = countryToCurrency(this.state.userCountry);
         this.setState({
           priceData: data[currency],
@@ -34,14 +37,13 @@ export default class Index extends React.Component {
       });
   };
 
-  getLocale = () => {
-    return new Promise((res, rej) => {
-      ipInfo((err, cLoc) => {
-        this.setState({ userCountry: cLoc.country });
-        res();
-      }, 'acb325fef4f5fb');
-    });
-  };
+  getLocale = () => new Promise((res, rej) => {
+    ipInfo((err, cLoc) => {
+      if (err) rej();
+      this.setState({ userCountry: cLoc.country });
+      res();
+    }, 'acb325fef4f5fb');
+  });
 
   render() {
     return (
@@ -50,25 +52,28 @@ export default class Index extends React.Component {
           <Banner />
           <div id="main">
             <section id="one" className="tiles">
-              <article style={{ backgroundImage: "url('/static/images/pic01.jpg')" }}>
+              <article>
                 <header className="major">
-                  <h3>{`BTC`}</h3>
+                  <h3>{'BTC'}</h3>
                   <p>{`Price (15m): ${this.state.priceData['15m']}${this.state.priceData.symbol} ${
                     this.state.userCurrency
                   }`}</p>
                 </header>
               </article>
-              <PriceTickerChart priceData={this.state.priceData} />
-              <article style={{ backgroundImage: "url('/static/images/pic03.jpg')" }}>
+              <PriceTickerChart
+                priceData={this.state.priceData}
+                userCurrency={this.state.userCurrency}
+              />
+              <article>
                 <header className="major">
-                  <h3>Magna</h3>
-                  <p>Lorem etiam nullam</p>
+                  <h3>Coming Soon...</h3>
+                  <p>Realtime BTC Price Charts</p>
                 </header>
               </article>
-              <article style={{ backgroundImage: "url('/static/images/pic04.jpg')" }}>
+              <article>
                 <header className="major">
-                  <h3>Ipsum</h3>
-                  <p>Nisl sed aliquam</p>
+                  <h3>😉</h3>
+                  <p>And Many More</p>
                 </header>
               </article>
             </section>
