@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Link from 'next/link';
 
-class Banner extends React.Component {
+export default class Banner extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -9,8 +9,6 @@ class Banner extends React.Component {
       searchTerm: '',
     };
   }
-
-  // convertCurrencyToBTC = currency => {};
 
   render() {
     return (
@@ -40,5 +38,3 @@ class Banner extends React.Component {
     );
   }
 }
-
-export default Banner;

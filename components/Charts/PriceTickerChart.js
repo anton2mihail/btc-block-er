@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Chart from 'chart.js';
 
-export default class PriceTickerChart extends React.Component {
+export default class PriceTickerChart extends Component {
   constructor(props) {
     super(props);
     this.tickerChart = React.createRef();
+    this.article = React.createRef();
     this.chartObj = '';
   }
 
@@ -14,6 +15,8 @@ export default class PriceTickerChart extends React.Component {
   }
 
   updateChart = () => {
+    this.chartObj.width = this.article.current.innerWidth;
+    this.chartObj.height = this.article.current.innerHeight;
     this.chartObj.render({
       duration: 800,
       easing: 'easeOutBounce',
@@ -21,6 +24,9 @@ export default class PriceTickerChart extends React.Component {
   };
 
   buildPriceChart = () => {
+    this.tickerChart.current.width = this.article.current.innerWidth;
+    this.tickerChart.current.height = this.article.current.innerHeight;
+
     const ctx = this.tickerChart.current.getContext('2d');
     this.chartObj = new Chart(ctx, {
       type: 'bar',
@@ -62,7 +68,7 @@ export default class PriceTickerChart extends React.Component {
 
   render() {
     return (
-      <article>
+      <article ref={this.article}>
         <canvas style={{ zIndex: 3 }} ref={this.tickerChart} />
       </article>
     );

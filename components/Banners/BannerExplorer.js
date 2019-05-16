@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 // import fetch from 'node-fetch';
 import FontAwesome from 'react-fontawesome';
 
-class BannerLanding extends React.Component {
+export default class BannerExplorer extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -10,18 +10,16 @@ class BannerLanding extends React.Component {
     };
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.searchTerm !== this.state.searchTerm) {
-      this.props.handleSearch(this.state.searchTerm);
-    }
-  }
-
-  handleSearch = (event) => {
+  handleAddressEntry = (event) => {
     this.setState({ searchTerm: event.target.value });
   };
 
-  handleSubmit = (event) => {
+  handleAddressSearch = (event) => {
     event.preventDefault();
+    this.props.handleSearch(this.state.searchTerm.trim());
+    this.setState({
+      searchTerm: '',
+    });
   };
 
   render() {
@@ -29,14 +27,14 @@ class BannerLanding extends React.Component {
       <section id="banner" className="style2">
         <div className="inner">
           <header className="major">
-            <form onSubmit={this.handleSubmit}>
+            <form onSubmit={this.handleAddressSearch}>
               <h3 style={{ paddingBottom: 0, marginBottom: '1em' }}>Search</h3>
               <input
                 style={{ width: '75%', display: 'inline-block' }}
                 type="text"
-                placeholder="Enter Addr (ie. '1EnJHhq8Jq8vDuZA5ahVh6H4t6jh1mB4rq')"
+                placeholder="Example: 1EnJHhq8Jq8vDuZA5ahVh6H4t6jh1mB4rq"
                 value={this.state.searchTerm}
-                onChange={this.handleSearch}
+                onChange={this.handleAddressEntry}
               />
               <button type="submit" value="Submit" style={{ padding: '3px 1em 1px' }}>
                 <FontAwesome name="search" className="fas fa-search" size="2x" />
@@ -48,6 +46,8 @@ class BannerLanding extends React.Component {
               Enter BTC wallet address here
               <br />
               transactions and metadata will appear below.
+              <br />
+              <sub>(due to api limits only the 50 most recent txs will appear)</sub>
             </p>
           </div>
         </div>
@@ -55,5 +55,3 @@ class BannerLanding extends React.Component {
     );
   }
 }
-
-export default BannerLanding;

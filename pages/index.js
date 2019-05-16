@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { Component } from 'react';
 import fetch from 'node-fetch';
 import ipInfo from '../utilities/ipinfo/lib/index';
 import countryToCurrency from '../utilities/countryToCurrency';
 
-import Layout from '../components/Layout';
-import Banner from '../components/Banner';
-import PriceTickerChart from '../components/PriceTickerChart';
+import Layout from '../components/Document/Layout';
+import Banner from '../components/Banners/Banner';
+import PriceTickerChart from '../components/Charts/PriceTickerChart';
 
-export default class Index extends React.Component {
+export default class Index extends Component {
   constructor(props) {
     super(props);
     this.state = {
