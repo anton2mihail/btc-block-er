@@ -42,6 +42,15 @@ body {
   display: grid;
   display: -moz-grid;
   display: -ms-grid;
-
-  grid-template-areas: "";
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas: "date value balance";
+}
+[name="date"] {
+  grid-area: "date";
+}
+[name="value"] {
+  grid-area: "value";
+}
+[name="balance"] {
+  grid-area: "balance";
 }

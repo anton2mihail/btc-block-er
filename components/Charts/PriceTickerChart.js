@@ -17,10 +17,7 @@ export default class PriceTickerChart extends Component {
   updateChart = () => {
     this.chartObj.width = this.article.current.innerWidth;
     this.chartObj.height = this.article.current.innerHeight;
-    this.chartObj.render({
-      duration: 800,
-      easing: 'easeOutBounce',
-    });
+    this.chartObj.resize();
   };
 
   buildPriceChart = () => {
