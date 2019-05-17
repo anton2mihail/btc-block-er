@@ -1,8 +1,7 @@
-import React from 'react';
-import fetch from 'node-fetch';
+import React, { Component } from 'react';
 import Link from 'next/link';
 
-class Banner extends React.Component {
+export default class Banner extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -10,8 +9,6 @@ class Banner extends React.Component {
       searchTerm: '',
     };
   }
-
-  convertCurrencyToBTC = currency => {};
 
   render() {
     return (
@@ -28,7 +25,7 @@ class Banner extends React.Component {
             </p>
             <ul className="actions">
               <li>
-                <Link href="/landing">
+                <Link href="/explorer">
                   <button type="button" className="button next scrolly">
                     Explore BTC Blockchain
                   </button>
@@ -41,5 +38,3 @@ class Banner extends React.Component {
     );
   }
 }
-
-export default Banner;
