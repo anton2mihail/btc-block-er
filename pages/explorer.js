@@ -70,6 +70,7 @@ export default class Explorer extends Component {
         .reduce((UTXO, txOut) => UTXO + (txOut[1].spent ? 0 : txOut[1].value), 0);
       cleanedTx.end_balance = cleanedTx.outputTally[jsonData.address].value + prevBalance;
       prevBalance = cleanedTx.end_balance;
+      // eslint-disable-next-line max-len
       cleanedTx.value_transacted = cleanedTx.outputTally[jsonData.address].value - totalUnspentOutputs;
       return cleanedTx;
     });
