@@ -8,8 +8,10 @@ const mapping = {
 const getCur = (country) => {
   const cur = mapping[country];
   // Sanity Check
-  if (cur.length === 3 && country) {
-    return cur;
+  if (cur) {
+    if (cur.length === 3 && country) {
+      return cur;
+    }
   }
   // Defaults to Usd
   return 'USD';

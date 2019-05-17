@@ -1,0 +1,4 @@
+{
+  "presets": ["next/babel", "jest"],
+  "plugins": [["@babel/plugin-proposal-decorators", { "legacy": true }]]
+}
