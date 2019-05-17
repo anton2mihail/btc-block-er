@@ -3,4 +3,3 @@ node_js: 10
 branches:
   only:
     - dev
-script: ./build.sh
